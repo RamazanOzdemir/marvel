@@ -1,65 +1,65 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useEffect } from "react";
+import { FETCH_HEROS, SELECT_HERO, useHero } from "../context/Heros";
+import styles from "../styles/Home.module.css";
+import fetchHeros from "../utils/fetchHeros";
+import { Card } from "antd";
+import { Row, Col } from "antd";
+import { useRouter } from "next/router";
+
+const { Meta } = Card;
 
 export default function Home() {
+  const router = useRouter();
+  const {
+    state: { heros },
+    dispatch,
+  } = useHero();
+
+  useEffect(() => {
+    fetchHeros().then((res) => {
+      console.log(res);
+      dispatch({ type: FETCH_HEROS, payload: res });
+    });
+  }, []);
+
+  const handleSelect = (id) => {
+    dispatch({ type: SELECT_HERO, payload: id });
+    router.push("/detail");
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Row className={styles.container} gutter={[12, 12]} justify="center">
+      {heros.map(({ id, name, thumbnail: { path, extension } }, index) => (
+        <Col
+          className={styles.card_container}
+          key={`car-key-${index}`}
+          xs={{ span: 24 }}
+          sm={{ span: 12 }}
+          md={{ span: 12 }}
+          lg={{ span: 8 }}
+          xll={{ span: 4 }}
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+          <Card
+            hoverable
+            className={styles.card}
+            cover={
+              <img
+                alt={name}
+                className={styles.card_image}
+                src={path + "." + extension}
+              />
+            }
+          >
+            <Meta
+              title={name}
+              description={
+                <span onClick={() => handleSelect(id)}>Detail...</span>
+              }
+            />
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  );
 }

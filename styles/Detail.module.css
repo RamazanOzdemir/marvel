@@ -1,0 +1,83 @@
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+.info{
+    width: 100%;
+    border: 1px solid red;
+    padding: 3vh 5vw;
+}
+.image_container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border-radius: calc(1vh + 1vw);
+    border: 0.5px solid #aaa;
+    padding: 1vh 0;
+    margin: 2vh;
+    box-shadow: 0.3vh 0.3vw 0.3vh 0.3vw #aaa;
+}
+.info_image{
+    width: auto;
+    height: 40vh;
+    object-fit: cover;
+    object-position: 50% 50%;
+
+
+}
+
+.info_detail{
+    padding: 2vh 2vw;
+    border: 1px solid #aaa;
+    margin: 2vh;
+    border-radius: calc(1vh + 1vw);
+    box-shadow: 0.3vh 0.3vw 0.3vh 0.3vw #aaa;
+    width: 100%;
+}
+.label {
+    font-size: calc(8px + 0.5vh + 0.5vw);
+    font-weight: bold;
+    min-width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1em;
+
+
+}
+.detail_name{
+    font-size: calc(6px + 0.5vh + 0.5vw);
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+.detail_description {
+    font-size: calc(6px + 0.5vh + 0.5vw);
+    display: flex;
+    align-items: flex-start;
+    word-wrap: normal;
+}
+
+.comics_container{
+    margin: 5vh 5vw;
+    border: 1px solid rgba(0,0,0,0.3);
+    padding: 2vh 5vw;
+    border-radius: calc(2vh + 2vw);
+    border-radius: calc(1vh + 1vw);
+    box-shadow: 0.3vh 0.3vw 0.3vh 0.3vw #aaa;
+}
+.list_header{
+    font-size: calc(10px + 1vh + 1vw);
+}
+.comic_date, .comic_serie{
+    margin-right: 2vw;
+    font-size: calc(5px + 0.5vh + 0.5vw);
+    min-width: 20vw;
+    display: inline-block;
+}
+@media(max-width:768px){
+    .comic_date, .comic_serie {
+        display: block;
+    }
+}

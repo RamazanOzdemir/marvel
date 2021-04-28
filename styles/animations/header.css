@@ -1,0 +1,9 @@
+@keyframes header {
+    from {
+        height: 10vh;
+    }
+
+    to {
+        height: 0 !important;
+    }
+}

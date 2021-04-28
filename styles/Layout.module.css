@@ -1,0 +1,70 @@
+.head{
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.9) !important;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+       line-height: 0 !important;
+
+}
+.head_banner{
+    background-color: red;
+    padding: 1px 1.5px;
+}
+
+.content{
+    flex: 1;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    height: 8vh;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_small{
+    animation-name: logo;
+    animation-duration: 1ms;
+}
+.head_banner_small {
+    overflow: hidden;
+    animation: test 8s linear;
+    animation-fill-mode: forwards;
+
+}
+
+
+@keyframes test {
+    0% {
+        width: 10em;
+    }
+    100% {
+        width: 2.4em;
+    }
+
+}
+
+
+@keyframes logo {
+    from {
+        width: 100%;
+    }
+    to{
+            background-color: red !important;
+
+        max-width: 2vh;
+    }
+}
